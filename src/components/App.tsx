@@ -1,8 +1,20 @@
 import React from 'react';
+import Main from './Main';
+import { configureStore } from '@reduxjs/toolkit';
+import { Provider } from 'react-redux';
+import './App.sass';
+import eventsReducer from '../slices/eventsSlice';
 
 const App :React.FC = () => {
+  const store = configureStore({
+    reducer: {
+      events: eventsReducer,
+    }
+  })
   return (
-    <div>ABOBA</div>
+    <Provider store={store}>
+      <Main />
+    </Provider> 
   );
 }
 

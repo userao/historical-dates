@@ -19,7 +19,7 @@ const config = {
     },
     devServer: {
         open: true,
-        port: 3030,
+        port: 3000,
         host: 'localhost',
     },
     plugins: [
@@ -57,6 +57,7 @@ const config = {
     resolve: {
         extensions: ['.tsx', '.ts', '.jsx', '.js', '...'],
     },
+    target: 'web',
 };
 
 module.exports = () => {
