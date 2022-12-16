@@ -3,18 +3,26 @@ import Main from './Main';
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 import './App.sass';
-import eventsReducer from '../slices/eventsSlice';
+import categoryReducer from '../slices/categorySlice';
+import getEvents from '../events';
+import { IEvent } from '../types/data';
+import EventsContext from '../context/EventsContext';
 
 const App :React.FC = () => {
   const store = configureStore({
     reducer: {
-      events: eventsReducer,
+      category: categoryReducer,
     }
   })
+  
+  const events = getEvents();
+ 
   return (
-    <Provider store={store}>
-      <Main />
-    </Provider> 
+    <EventsContext.Provider value={events}>
+      <Provider store={store}>
+        <Main />
+      </Provider> 
+    </EventsContext.Provider>
   );
 }
 

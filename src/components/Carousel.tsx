@@ -1,48 +1,46 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { gsap } from 'gsap';
 import styled from 'styled-components';
 import './Carousel.sass';
+import { ICategoryState } from '../types/data';
+import { ReactReduxContextInstance } from 'react-redux/es/components/Context';
+import { StatsBase } from 'fs';
+import { SyntheticEvent } from 'react';
+import { actions as categoryActions } from '../slices/categorySlice'
+import { animateFadeOut } from '../animateCategoryChange';
+import CategoryButton from './CategoryButton';
 
 interface ICarouselProps {
   categories: string[];
-  active: string
+  setNewActive: Function;
+  getNewActive: Function;
 }
 
-const Carousel :React.FC<ICarouselProps> = ({ categories, active }) => {
-  interface ICatNames {
-    [name: string]: string;
-  }
-  const categoryNames: ICatNames = {
-    literature: 'Литература',
-    sports: 'Спорт',
-    cinematography: 'Кино',
-    science: 'Наука',
-  }
-  const defaultAngle = 290;
+const Carousel :React.FC<ICarouselProps> = ({ categories, setNewActive, getNewActive }) => {
+  const active = useSelector((state: any) => state.category.activeCategory);
   const rotationStep = 360 / categories.length;
+
+  const handleClick = (e: SyntheticEvent, category: string, rotationAngle: number) => {
+    if (category === active) return;
+    const targetedElement = e.target;
+    const { newActiveEvents, newActiveYears } = getNewActive(category);
+    animateFadeOut(rotationAngle, category, newActiveYears, targetedElement, setNewActive);
+  };
 
   return (
     <div className="carousel">
-      {
-      categories.map((category, i) => {
-        const rotationAngle = rotationStep * i;
-        const isActive = category === active;
-        const transform = `
-          rotate(${rotationAngle + defaultAngle}deg)
-          translateX(265px)
-          rotate(-${rotationAngle + defaultAngle}deg)
-        `
-        return (
-          <div
-            key={category}
-            className={isActive ? 'active-category' : 'inactive-category'}
-            style={{transform: `${transform}`}}
-          >
-            <span className={`category-index ${isActive ? 'shown' : 'hidden'}`}>{categories.indexOf(category) + 1}</span>
-            <div className={`category-name ${isActive ? 'shown' : 'hidden'}`}>{categoryNames[category]}</div>
-          </div>
-        );   
-      })
+      <svg id="path" height="530" width="530">
+        <circle cx="265" cy="265" r="265" stroke="rgb(26, 34, 48, 0.1)" strokeWidth="1" fill="none" />
+      </svg>
+      {categories.map((category, i) => (
+        <CategoryButton
+          key={i}
+          category={category}
+          rotationStep={rotationStep}
+          index={i}
+          handleClick={handleClick}
+        />))
       }
     </div>
   )

@@ -1,17 +1,17 @@
 import React from 'react';
-import { IActiveYearsType } from '../types/data';
 import './Years.sass';
+import { useSelector } from 'react-redux';
 
-interface IYearsProps {
-  activeYears: IActiveYearsType;
-}
+const Years: React.FC = () => {
+  const activeYears = useSelector((state: any) => state.category.activeYears);
 
-const Years: React.FC<IYearsProps> = ({ activeYears }) => {
-
-  return <div className="years-container">
-    <p className="year from">{activeYears.from}</p>
-    <p className="year to">{activeYears.to}</p>
-  </div>
+  return (
+    activeYears &&
+    <div className="years-container">
+      <p className="year from">{activeYears.from}</p>
+      <p className="year to">{activeYears.to}</p>
+    </div>
+  )
 };
 
 export default Years;

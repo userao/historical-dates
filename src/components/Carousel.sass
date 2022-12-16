@@ -5,36 +5,37 @@
   top: 215px
   width: 530px
   height: 530px
-  border-radius: 50%
-  border: rgb(26, 34, 48, 0.1) solid 1px
+
+  .btn-container
+    position: absolute
+    display: flex
+    align-items: center
+    justify-content: center
+    left: 230px
+    top: 230px
+    width: 70px
+    height: 70px
 
   .inactive-category
-    position: absolute
-    left: 261px
-    top: 261px
     background: #42567A
     width: 6px
     height: 6px
-    transform: rotate(290deg)
     border-radius: 50%
     
-  .active-category
-    position: absolute
-    left: 240px
-    top: 240px
+  .active-category, .active-category-hover, .active-category-transition
+    display: flex
+    justify-content: center
+    align-items: center
     background: #F4F5F9
     width: 56px
     height: 56px
-    transform: rotate(290deg)
     border: 1px solid rgba(48, 62, 88, 0.5)
     border-radius: 50%
-    text-align: center
-    padding-top: 11px
     color: #42567A
     font-size: 20px
 
   .category-name
-    position: relative
+    position: absolute
     bottom: 26px
     left: 80px
 
@@ -42,7 +43,11 @@
     font-weight: 400
 
   .hidden
-    opacity: 0
+    display: none
   
   .shown
-    opacity: 1
+    display: block
+
+  .btn
+    cursor: pointer
+  
