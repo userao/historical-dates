@@ -1,10 +1,11 @@
 import React, { Ref, useEffect, useRef, useState } from 'react';
 import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 import SwiperType from 'swiper';
+import { Navigation, Pagination } from 'swiper';
 import "swiper/css";
 import "swiper/css/navigation";
+import "swiper/css/pagination";
 
-import { Navigation } from "swiper";
 
 import { IEvent } from '../types/data';
 import './Swipe.sass';
@@ -21,6 +22,17 @@ const Swipe: React.FC = () => {
   useEffect(() => {
     swiperInstance?.slideTo(0, 0, true);
   }, [events]);
+
+  const breakpoints = {
+    200: {
+     slidesPerView: 1,
+     spaceBetween: 25
+    },
+    800: {
+     slidesPerView: 3,
+     spaceBetween: 80
+    },
+   };
 
   const switchButtonsVisibility = () => {
     const prevClasses = prevButton.current?.classList;
@@ -41,10 +53,11 @@ const Swipe: React.FC = () => {
     events &&
     <div className="swiper-container">
       <Swiper
-        spaceBetween={50}
-        slidesPerView={3}
-        navigation={true}
-        modules={[Navigation]}
+        breakpoints={breakpoints}
+        spaceBetween={25}
+        slidesPerView={1}
+        pagination
+        modules={[Pagination]}
         onSwiper={(swiper) => {
           setSwiperInstance(swiper);
         }}

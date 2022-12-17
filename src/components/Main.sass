@@ -1,5 +1,5 @@
 .container
-  position: relative
+  position: absolute
   width: 1440px
   height: 1080px
   border-left: rgb(26, 34, 48, 0.1) solid 1px
@@ -37,3 +37,38 @@
       font-weight: 700
       color: #42567A
       line-height: 67.2px
+
+// MOBILE
+@media (max-width: 800px)
+  .container
+    display: flex
+    position: absolute
+    justify-content: center
+    width: 320px
+    height: 568px
+    border: none
+
+    .horizontal
+      display: none
+
+    .vertical
+      display: none
+
+    .header-wrap
+      position: absolute
+      top: 59px
+      left: 20px
+      width: 123px
+      height: 48px
+      background: none
+
+      .header
+        font-size: 20px
+        font-weight: 700
+        color: #42567A
+        line-height: 24px
+        padding: 0
+
+    .carousel
+      display: none
+  

@@ -37,3 +37,44 @@
         bottom: 2px
         border-top: solid 2px #42567A
         border-right: solid 2px #42567A
+
+// MOBILE
+@media (max-width: 800px)
+  .element-container
+    position: absolute
+    left: 20px
+    bottom: 13px
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    height: 49px
+    width: 58px
+
+    .buttons
+      display: flex
+      justify-content: space-between
+
+      button
+        background: none
+        border-radius: 50%
+        border: 1px solid rgba(66, 86, 122, 0.5)
+        width: 25px
+        height: 25px
+        padding-top: 1px
+
+        .arrow
+          position: relative
+          transform: rotate(45deg)
+          width: 8px
+          height: 8px
+          bottom: 1px
+        
+        .left
+          left: 9px
+          border-left: solid 2px #42567A
+          border-bottom: solid 2px #42567A
+
+        .right
+          left: 6px
+          border-top: solid 2px #42567A
+          border-right: solid 2px #42567A

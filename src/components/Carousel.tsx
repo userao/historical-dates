@@ -8,7 +8,7 @@ import { ReactReduxContextInstance } from 'react-redux/es/components/Context';
 import { StatsBase } from 'fs';
 import { SyntheticEvent } from 'react';
 import { actions as categoryActions } from '../slices/categorySlice'
-import { animateFadeOut } from '../animateCategoryChange';
+import { animateCategoryChange } from '../animateCategoryChange';
 import CategoryButton from './CategoryButton';
 
 interface ICarouselProps {
@@ -25,7 +25,7 @@ const Carousel :React.FC<ICarouselProps> = ({ categories, setNewActive, getNewAc
     if (category === active) return;
     const targetedElement = e.target;
     const { newActiveEvents, newActiveYears } = getNewActive(category);
-    animateFadeOut(rotationAngle, category, newActiveYears, targetedElement, setNewActive);
+    animateCategoryChange(rotationAngle, category, newActiveYears, setNewActive);
   };
 
   return (

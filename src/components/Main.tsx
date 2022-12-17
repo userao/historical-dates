@@ -61,9 +61,9 @@ const Main :React.FC = () => {
       <div className="header-wrap">
         <h1 className="header">Исторические даты</h1>
       </div>
-      <Carousel categories={eventsCategories} setNewActive={setNewActive} getNewActive={getNewActive}/>
+      <Carousel categories={eventsCategories} setNewActive={setNewActive} getNewActive={getNewActive} />
       <Years />
-      <ChangeCategoryButtons categories={eventsCategories} />
+      <ChangeCategoryButtons categories={eventsCategories} setNewActive={setNewActive} getNewActive={getNewActive} />
       <Swipe />
     </div>
   )

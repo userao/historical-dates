@@ -43,6 +43,9 @@
   .swiper-button-disabled
     opacity: 0
 
+  .swiper-pagination
+    display: none
+
   .arrow
     position: relative
     width: 10px
@@ -59,3 +62,38 @@
     border-right: none
     border-top: none
     left: 2px
+
+// MOBILE
+@media (max-width: 800px)
+  .swiper-container
+    position: absolute
+    left: 20px
+    bottom: 104px
+    height: 114px
+    width: 300px
+
+    .header
+      cursor: default
+      font-family: 'Bebas Neue'
+      font-style: normal
+      font-weight: 400
+      font-size: 16px
+      line-height: 19.2px
+      color: #3877EE
+      margin-bottom: 15px
+
+    .description
+      cursor: default
+      font-weight: 400
+      font-size: 14px
+      line-height: 20.3px
+      color: #42567A
+
+    [class^='swiper-button-']
+      display: none
+
+    .swiper-slide
+      padding-bottom: 50px
+    
+    .swiper-pagination
+      display: block
