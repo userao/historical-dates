@@ -1,15 +1,9 @@
-# 🚀 Welcome to your new awesome project!
+# Historical dates
+#### install
+<code>make install</code>
 
-This project has been created using **webpack-cli**, you can now run
+#### run dev server
+<code>make serve</code>
 
-```
-npm run build
-```
-
-or
-
-```
-yarn build
-```
-
-to bundle your application
+#### build project
+<code>make build</code>
