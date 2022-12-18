@@ -7,3 +7,6 @@
 
 #### build project
 <code>make build</code>
+
+#### build on vercel
+https://historical-dates.vercel.app
