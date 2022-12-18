@@ -5,15 +5,14 @@ import { Provider } from 'react-redux';
 import './App.sass';
 import categoryReducer from '../slices/categorySlice';
 import getEvents from '../events';
-import { IEvent } from '../types/data';
 import EventsContext from '../context/EventsContext';
 
 const App :React.FC = () => {
   const store = configureStore({
     reducer: {
       category: categoryReducer,
-    }
-  })
+    },
+  });
   
   const events = getEvents();
  

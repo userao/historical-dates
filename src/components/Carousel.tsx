@@ -1,13 +1,6 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { gsap } from 'gsap';
-import styled from 'styled-components';
+import { useSelector } from 'react-redux';
 import './Carousel.sass';
-import { ICategoryState } from '../types/data';
-import { ReactReduxContextInstance } from 'react-redux/es/components/Context';
-import { StatsBase } from 'fs';
-import { SyntheticEvent } from 'react';
-import { actions as categoryActions } from '../slices/categorySlice'
 import { animateCategoryChange } from '../animateCategoryChange';
 import CategoryButton from './CategoryButton';
 
@@ -21,10 +14,9 @@ const Carousel :React.FC<ICarouselProps> = ({ categories, setNewActive, getNewAc
   const active = useSelector((state: any) => state.category.activeCategory);
   const rotationStep = 360 / categories.length;
 
-  const handleClick = (e: SyntheticEvent, category: string, rotationAngle: number) => {
+  const handleClick = (category: string, rotationAngle: number) => {
     if (category === active) return;
-    const targetedElement = e.target;
-    const { newActiveEvents, newActiveYears } = getNewActive(category);
+    const { newActiveYears } = getNewActive(category);
     animateCategoryChange(rotationAngle, category, newActiveYears, setNewActive);
   };
 
@@ -43,7 +35,7 @@ const Carousel :React.FC<ICarouselProps> = ({ categories, setNewActive, getNewAc
         />))
       }
     </div>
-  )
+  );
 };
 
 export default Carousel;

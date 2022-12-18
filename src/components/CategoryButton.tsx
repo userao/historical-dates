@@ -1,7 +1,5 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { gsap } from 'gsap'
-
 interface ICategoryButtonProps {
   category: string;
   rotationStep: number;
@@ -12,7 +10,7 @@ interface ICategoryButtonProps {
 const CategoryButton: React.FC<ICategoryButtonProps> = ({ category, rotationStep, index, handleClick }) => {
   interface ICatNames {
     [name: string]: string;
-  };
+  }
   const categoryNames: ICatNames = {
     literature: 'Литература',
     sports: 'Спорт',
@@ -74,7 +72,7 @@ const CategoryButton: React.FC<ICategoryButtonProps> = ({ category, rotationStep
       onMouseLeave={(e) => setInactive(e, isActive)}  
     >
       <div
-        onClick={(e) => handleClick(e, category, rotationAngle)}
+        onClick={() => handleClick(category, rotationAngle)}
         key={category}
         className={`btn ${isActive ? 'active-category' : 'inactive-category'}`}
       >
@@ -82,7 +80,7 @@ const CategoryButton: React.FC<ICategoryButtonProps> = ({ category, rotationStep
       </div>
       <div className={`category-name ${isActive ? 'shown' : 'hidden'}`}>{categoryNames[category]}</div>
     </div>
-  )
+  );
 };
 
 export default CategoryButton;

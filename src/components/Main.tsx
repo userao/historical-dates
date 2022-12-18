@@ -1,14 +1,11 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { useDispatch } from 'react-redux';
-import { gsap } from 'gsap';
 import './Main.sass';
 import Carousel from './Carousel';
-// import getEvents from '../events';
 import Years from './Years';
 import ChangeCategoryButtons from './ChangeCategoryButtons';
 import { IEvent, IActiveYears } from '../types/data';
 import Swipe from './Swipe';
-import usePrevious from '../hooks/usePrevious';
 import EventsContext from '../context/EventsContext';
 import { actions as categoryActions } from '../slices/categorySlice';
 
