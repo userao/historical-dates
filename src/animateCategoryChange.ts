@@ -3,7 +3,12 @@ import MotionPathPlugin from 'gsap/MotionPathPlugin';
 import { IActiveYears } from './types/data';
 gsap.registerPlugin(MotionPathPlugin);
 
-const animateCategoryChange = (rotationAngle: number, category: string, newActiveYears: IActiveYears, setNewActive: Function) => {
+const animateCategoryChange = (
+  rotationAngle: number,
+  category: string,
+  newActiveYears: IActiveYears,
+  setNewActive: (category: string) => void,
+): void => {
   const tl = gsap.timeline();
   tl.to('.carousel', {rotation: -rotationAngle, duration: 2})
     .to('.btn-container', {rotation: rotationAngle, duration: 2}, '<')

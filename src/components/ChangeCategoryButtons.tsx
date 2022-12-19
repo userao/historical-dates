@@ -2,11 +2,12 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import './ChangeCategoryButtons.sass';
 import { animateCategoryChange } from '../animateCategoryChange';
+import { IEvent, IActiveYears } from '../types/data';
 
 interface IButtonsProps {
   categories: string[];
-  setNewActive: Function;
-  getNewActive: Function;
+  setNewActive: (category: string) => void;
+  getNewActive: (category: string) => {newActiveEvents: IEvent[], newActiveYears: IActiveYears};
 }
 
 const ChangeCategoryButtons: React.FC<IButtonsProps> = ({ categories, getNewActive, setNewActive }) => {

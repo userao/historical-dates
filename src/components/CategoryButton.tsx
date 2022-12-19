@@ -1,10 +1,11 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useAppSelector } from '../hooks/useAppSelector';
+
 interface ICategoryButtonProps {
   category: string;
   rotationStep: number;
   index: number;
-  handleClick: Function;
+  handleClick: (category: string, rotationAngle: number) => void;
 }
 
 const CategoryButton: React.FC<ICategoryButtonProps> = ({ category, rotationStep, index, handleClick }) => {
@@ -18,7 +19,7 @@ const CategoryButton: React.FC<ICategoryButtonProps> = ({ category, rotationStep
     science: 'Наука',
   };
 
-  const activeCategory = useSelector((state: any) => state.category.activeCategory);
+  const activeCategory = useAppSelector((state) => state.category.activeCategory);
   const isActive = category === activeCategory;
   const defaultAngle = 290;
   const rotationAngle = rotationStep * index;
@@ -68,8 +69,8 @@ const CategoryButton: React.FC<ICategoryButtonProps> = ({ category, rotationStep
     <div
       className="btn-container"
       style={{transform: `${transform}`}}
-      onMouseEnter={(e) => setActive(e, isActive)}
-      onMouseLeave={(e) => setInactive(e, isActive)}  
+      onMouseEnter={(e: React.MouseEvent<HTMLDivElement, MouseEvent>) => setActive(e, isActive)}
+      onMouseLeave={(e: React.MouseEvent<HTMLDivElement, MouseEvent>) => setInactive(e, isActive)}  
     >
       <div
         onClick={() => handleClick(category, rotationAngle)}

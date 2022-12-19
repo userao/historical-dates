@@ -1,5 +1,4 @@
 import React, { useEffect, useContext } from 'react';
-import { useDispatch } from 'react-redux';
 import './Main.sass';
 import Carousel from './Carousel';
 import Years from './Years';
@@ -8,6 +7,7 @@ import { IEvent, IActiveYears } from '../types/data';
 import Swipe from './Swipe';
 import EventsContext from '../context/EventsContext';
 import { actions as categoryActions } from '../slices/categorySlice';
+import { useAppDispatch } from '../hooks/useAppDispatch';
 
 const getCategories = (events: IEvent[]) => events.reduce((acc: string[], event: IEvent) => {
   const category = event.category;
@@ -27,10 +27,10 @@ const getActiveYears = (events: IEvent[]) => events.reduce<IActiveYears>((acc, e
 
 const Main :React.FC = () => {
   const events = useContext(EventsContext);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const eventsCategories = getCategories(events);
 
-  const getNewActive = (category: string) => {
+  const getNewActive = (category: string): {newActiveEvents: IEvent[], newActiveYears: IActiveYears} => {
     const newActiveEvents = getActiveEvents(events, category);
     const newActiveYears = getActiveYears(newActiveEvents);
     return {
@@ -39,7 +39,7 @@ const Main :React.FC = () => {
     }
   };
 
-  const setNewActive = (category: string) => {
+  const setNewActive = (category: string): void => {
     const activeEvents = getActiveEvents(events, category);
     const activeYears = getActiveYears(activeEvents);
     dispatch(categoryActions.setActiveCategory(category));
